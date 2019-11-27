@@ -1,20 +1,27 @@
 import random
+import math
 
 class Human:
     
     
-    def __init__(self, name, real_hp, real_stamina, real_sex, real_physique, real_iq, real_money, days):
+    def __init__(self, name, real_hp, real_stamina, real_sex, real_physique, real_iq, real_money, age):
         self.name = name
-        self.real_hp = 5
-        self.real_stamina = 1
+        self.real_hp = 10
+        self.real_stamina = 10
         self.real_sex = random.randint(1,2)
         self.real_physique = random.randint(1,200)
         self.real_iq = random.randint(1,200)
         self.real_money = random.randint(1,100000)
-        self.days= days
+        self.age= age
   
     def statcheck(self):
-        return ('{} {} {} {} {} {} {} {}'.format(self.name, self.real_hp, self.real_stamina, self.real_sex, self.real_physique, self.real_iq, self.real_money, self.days)) 
+        return ('{} {} {} {} {} {} {} {}'.format(self.name, self.real_hp, self.real_stamina, self.real_sex, self.real_physique, self.real_iq, self.real_money, self.age)) 
+    
+    def random_stats(self):
+        self.real_sex = random.randint(1,2)
+        self.real_physique = random.randint(1,200)
+        self.real_iq = random.randint(1,200)
+        self.real_money = random.randint(1,100000)
     
     def stats_to_text_hp(self):
         if  self.real_hp == 10:
@@ -54,6 +61,9 @@ class Human:
             self.stat_iq = '[Average IQ]'
         else:
             self.stat_iq = '[Dumbo]'
+
+    def go_to_work(self):
+        self.real_money= (self.real_money) +100*(math.log(self.real_iq))
             
     def stat_how_rich(self):
         if self.real_money > 100000:
@@ -62,7 +72,7 @@ class Human:
             self.stat_money = '[Middle Income]'
         else:
             self.stat_money = '[Basically Homeless]'
-    
+        
     def statcheck_convert(self):
         self.stats_to_text_hp()
         self.stats_to_text_stamina()
@@ -70,10 +80,26 @@ class Human:
         self.stat_how_buff()
         self.stat_how_smart()
         self.stat_how_rich()
-        return ('My name is {}\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n'.format(self.name, self.stat_hp, self.stat_stamina, self.stat_sex, self.stat_physique, self.stat_iq, self.stat_money, self.days))        
-totaldays= 100
-days = '[{} days left]'.format(totaldays)
-name= (input('What is your name?'))
-human1=Human(name, {}, {}, {}, {}, {}, {}, days)
+        return ('My name is {}\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n'.format(self.name, self.stat_hp, self.stat_stamina, self.stat_sex, self.stat_physique, self.stat_iq, self.stat_money, self.age))        
+
+    def satisfaction_yes_no(self):
+        yes = {'yes', 'affirmative', 'yeah', 'yea', 'y', 'yup'}
+        while True:
+            self.question1 = input('Are you satisfied with your result?\n')
+            question = self.question1.lower()
+            if question in yes:
+                print('result pass')
+                break
+            else:
+                human1.random_stats()
+                print(human1.statcheck_convert())
+        print('very cool')
+    
+
+totalage= random.randint(1,100)
+age = '[{} years old]'.format(totalage)
+name= (input('What is your name?\n'))
+human1=Human(name, {}, {}, {}, {}, {}, {}, age)
 print(human1.statcheck())
 print(human1.statcheck_convert())
+print(human1.satisfaction_yes_no())
