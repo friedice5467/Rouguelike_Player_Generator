@@ -13,8 +13,8 @@ class Human:
         self.real_money = random.randint(1,100000)
         self.real_age= random.randint(13,100)
   
-    def statcheck(self):
-        return ('{} {} {} {} {} {} {} {}'.format(self.name, self.real_hp, self.real_stamina, self.real_sex, self.real_physique, self.real_iq, self.real_money, self.real_age)) 
+    #def statcheck(self):
+        #return ('{} {} {} {} {} {} {} {}'.format(self.name, self.real_hp, self.real_stamina, self.real_sex, self.real_physique, self.real_iq, self.real_money, self.real_age)) 
     
     def random_stats(self):
         self.real_age=random.randint(1,100)
@@ -96,5 +96,4 @@ class Human:
 
 name= (input('What is your name?\n'))
 human1=Human(name, {}, {}, {}, {}, {}, {}, {})
-print(Human.statcheck_convert(human1))
 print(Human.satisfaction_yes_no(human1))
