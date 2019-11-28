@@ -1,5 +1,4 @@
 import random
-import math
 
 class Human:
     
@@ -63,8 +62,6 @@ class Human:
         else:
             self.stat_iq = 'Smooth Brain'
 
-    def go_to_work(self):
-        self.real_money= (self.real_money) +100*(math.log(self.real_iq))
             
     def stat_how_rich(self):
         if self.real_money > 100000:
