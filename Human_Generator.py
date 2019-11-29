@@ -86,11 +86,12 @@ class Human:
             self.question1 = input('Are you satisfied with your result?\nYes/No:    ')
             question = self.question1.lower()
             if question in yes:
+                print (self.statcheck_convert())
                 return 'Creation Success'
                 break
             else:
                 self.random_stats()
-                print (self.statcheck_convert())
+
                 
 
 
