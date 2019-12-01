@@ -21,7 +21,7 @@ class Human:
         self.real_sex = random.randint(1,2)
         self.real_physique = random.randint(1,200)
         self.real_iq = random.randint(1,200)
-        self.real_money = random.randint(1,100000)
+        self.real_money = random.randint(1,70000)
     
     def stats_to_text_hp(self):
         if  self.real_hp == 10:
@@ -83,15 +83,14 @@ class Human:
     def satisfaction_yes_no(self):
         yes = {'yes', 'affirmative', 'yeah', 'yea', 'y', 'yup'}
         while True:
+            print(self.statcheck_convert())
             self.question1 = input('Are you satisfied with your result?\nYes/No:    ')
             question = self.question1.lower()
             if question in yes:
-                print (self.statcheck_convert())
-                return 'Creation Success'
+                return '\nCreation Success'
                 break
             else:
                 self.random_stats()
-
                 
 
 
