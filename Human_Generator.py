@@ -1,4 +1,5 @@
 import random
+import pickle
 
 class Human:
     
@@ -8,8 +9,8 @@ class Human:
         self.real_hp = 10
         self.real_stamina = 10
         self.real_sex = random.randint(1,2)
-        self.real_physique = random.randint(1,200)
-        self.real_iq = random.randint(1,200)
+        self.real_physique = random.randint(30,200)
+        self.real_iq = random.randint(30,200)
         self.real_money = random.randint(1,100000)
         self.real_age= random.randint(13,100)
   
@@ -17,10 +18,10 @@ class Human:
         #return ('{} {} {} {} {} {} {} {}'.format(self.name, self.real_hp, self.real_stamina, self.real_sex, self.real_physique, self.real_iq, self.real_money, self.real_age)) 
     
     def random_stats(self):
-        self.real_age=random.randint(1,100)
+        self.real_age=random.randint(13,100)
         self.real_sex = random.randint(1,2)
-        self.real_physique = random.randint(1,200)
-        self.real_iq = random.randint(1,200)
+        self.real_physique = random.randint(1,180)
+        self.real_iq = random.randint(1,180)
         self.real_money = random.randint(1,70000)
     
     def stats_to_text_hp(self):
@@ -79,21 +80,31 @@ class Human:
         self.stat_how_smart()
         self.stat_how_rich()
         return ('-----------------------\nMy name is [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{}]\n    [{} years old]\n-----------------------'.format(self.name, self.stat_hp, self.stat_stamina, self.stat_sex, self.stat_physique, self.stat_iq, self.stat_money, self.real_age))        
-
+    
     def satisfaction_yes_no(self):
-        yes = {'yes', 'affirmative', 'yeah', 'yea', 'y', 'yup'}
+        yes = 1
+        no = 2
+        end = 0
         while True:
-            print(self.statcheck_convert())
-            self.question1 = input('Are you satisfied with your result?\nYes/No:    ')
-            question = self.question1.lower()
-            if question in yes:
+            self.question1 = input('Are you satisfied with your result?\nYes 1 | No 2 | End 0 |  ')
+            question = int(self.question1)
+            if question == 1 and question:
+                with open('savefile.dat', 'wb') as f:
+                    pickle.dump([self], f, protocol = 2)
                 return '\nCreation Success'
                 break
-            else:
+            elif question == 2:
+                print(self.statcheck_convert())
                 self.random_stats()
-                
+                print('Your stats will now randomly change')
+            elif question == 0:
+                return ("Come again")
+            else:
+                print('invalid input. Enter the proper commands') 
 
+            
 
 name= (input('What is your name?\n'))
-human1=Human(name, {}, {}, {}, {}, {}, {}, {})
-print(Human.satisfaction_yes_no(human1))
+player=Human(name, {}, {}, {}, {}, {}, {}, {})
+print(player.statcheck_convert())
+print(Human.satisfaction_yes_no(player))
